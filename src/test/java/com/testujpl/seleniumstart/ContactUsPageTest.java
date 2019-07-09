@@ -9,16 +9,17 @@ import static org.junit.Assert.assertTrue;
 
 public class ContactUsPageTest extends BaseTest {
 
+    private HomePage homePage;
 
     @Test
     public void asUserIWantToGoToContactUsPage() {
         //given
-        HomePage homePage = new HomePage(chromeDriver);
+        homePage = new HomePage();
 
         //when
         homePage.clickOnBtnContactUs();
 
-        ContactUsPage contactUsPage = new ContactUsPage(chromeDriver);
+        ContactUsPage contactUsPage = new ContactUsPage();
         boolean actual = contactUsPage.isLblContactUsDisplayed();
 
         //then
@@ -35,10 +36,10 @@ public class ContactUsPageTest extends BaseTest {
         String messageToEnter = "Example Message";
         String alertMessage = "Please select a subject from the list provided.";
 
-        HomePage homePage = new HomePage(chromeDriver);
+        homePage = new HomePage();
         homePage.clickOnBtnContactUs();
 
-        ContactUsPage contactUsPage = new ContactUsPage(chromeDriver);
+        ContactUsPage contactUsPage = new ContactUsPage();
         contactUsPage.inputTextInToTfEmail(emailToEnter);
         contactUsPage.inputTextInTfOrderReference(orderReferenceToEnter);
         contactUsPage.inputTextInTfMessage(messageToEnter);
@@ -59,15 +60,16 @@ public class ContactUsPageTest extends BaseTest {
         String emailToEnter = "email@example.com";
         String orderReferenceToEnter = "exampleOrderReference";
         String messageToEnter = "Example Message";
+        int subcjectToChoose = 1;
 
-        HomePage homePage = new HomePage(chromeDriver);
+        homePage = new HomePage();
         homePage.clickOnBtnContactUs();
 
-        ContactUsPage contactUsPage = new ContactUsPage(chromeDriver);
+        ContactUsPage contactUsPage = new ContactUsPage();
         contactUsPage.inputTextInToTfEmail(emailToEnter);
         contactUsPage.inputTextInTfOrderReference(orderReferenceToEnter);
         contactUsPage.inputTextInTfMessage(messageToEnter);
-        contactUsPage.selectSubjectWithId1();
+        contactUsPage.selectSubjectWithId1(subcjectToChoose);
 
         //when
         contactUsPage.clickOnBtnSubmitMessage();

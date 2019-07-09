@@ -1,10 +1,13 @@
 package com.testujpl.seleniumstart.pages;
 
+import com.testujpl.seleniumstart.driver.Driver;
+import com.testujpl.seleniumstart.driver.Waits;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 
 
 public class ContactUsPage {
@@ -33,37 +36,44 @@ public class ContactUsPage {
     @FindBy(css = "p.alert.alert-success")
     private WebElement lblAlertSucces;
 
-    public ContactUsPage(WebDriver webDriver){
-        PageFactory.initElements(webDriver, this);
+    public ContactUsPage(){
+        Waits.implicitlyWait(2);
+        PageFactory.initElements(Driver.getInstance(),this);
     }
+
+//    public ContactUsPage(WebDriver webDriver){
+//        Waits.implicitlyWait(2);
+//        PageFactory.initElements(Driver.getInstance(), this);
+//    }
 
     public boolean isLblContactUsDisplayed(){
         return this.lblContactUs.isDisplayed();
     }
 
-    public void inputTextInToTfEmail(String textToInput){
-        this.tfEmail.sendKeys(textToInput);
+    public ContactUsPage inputTextInToTfEmail(String textToInput){
+        tfEmail.sendKeys(textToInput);
+        return this;
     }
 
-    public void inputTextInTfOrderReference(String textToInput){
-        this.tfOrderReference.sendKeys(textToInput);
+    public ContactUsPage inputTextInTfOrderReference(String textToInput){
+        tfOrderReference.sendKeys(textToInput);
+        return this;
     }
 
-    public void  inputTextInTfMessage(String textToInput){
-        this.tfMessage.sendKeys(textToInput);
+    public ContactUsPage inputTextInTfMessage(String textToInput){
+        tfMessage.sendKeys(textToInput);
+        return this;
     }
 
-    public void selectSubjectWithId1(){
+    public ContactUsPage selectSubjectWithId1(int subjectToSelect){
         Select chooseSubject = new Select(this.ddSubject);
-        chooseSubject.selectByIndex(1);
+        chooseSubject.selectByIndex(subjectToSelect);
+        return this;
     }
 
-    public void clickOnBtnSubmitMessage(){
-        this.btnSubmitMessage.click();
-    }
-
-    public boolean isLblAlertDangerDisplayed(){
-        return this.lblAlertDanger.isDisplayed();
+    public ContactUsPage clickOnBtnSubmitMessage(){
+        btnSubmitMessage.click();
+        return this;
     }
 
     public String isLblAlertDangerTextAsExpected(){
@@ -73,5 +83,9 @@ public class ContactUsPage {
 
     public boolean isLblAlertSuccesDisplayed(){
         return this.lblAlertSucces.isDisplayed();
+    }
+
+    public boolean isLblAlertDangerDisplayed(){
+        return this.lblAlertDanger.isDisplayed();
     }
 }
