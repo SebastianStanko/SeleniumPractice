@@ -12,9 +12,6 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class ContactUsPage {
 
-    @FindBy(css = "h1.page-heading.bottom-indent")
-    private WebElement lblContactUs;
-
     @FindBy(css = "input#email")
     private WebElement tfEmail;
 
@@ -30,24 +27,12 @@ public class ContactUsPage {
     @FindBy(css = "button#submitMessage")
     private WebElement btnSubmitMessage;
 
-    @FindBy(css = "div.alert.alert-danger>ol>li")
-    private WebElement lblAlertDanger;
-
     @FindBy(css = "p.alert.alert-success")
     private WebElement lblAlertSucces;
 
     public ContactUsPage(){
         Waits.implicitlyWait(2);
         PageFactory.initElements(Driver.getInstance(),this);
-    }
-
-//    public ContactUsPage(WebDriver webDriver){
-//        Waits.implicitlyWait(2);
-//        PageFactory.initElements(Driver.getInstance(), this);
-//    }
-
-    public boolean isLblContactUsDisplayed(){
-        return this.lblContactUs.isDisplayed();
     }
 
     public ContactUsPage inputTextInToTfEmail(String textToInput){
@@ -65,7 +50,7 @@ public class ContactUsPage {
         return this;
     }
 
-    public ContactUsPage selectSubjectWithId1(int subjectToSelect){
+    public ContactUsPage selectSubjectById(int subjectToSelect){
         Select chooseSubject = new Select(this.ddSubject);
         chooseSubject.selectByIndex(subjectToSelect);
         return this;
@@ -76,16 +61,8 @@ public class ContactUsPage {
         return this;
     }
 
-    public String isLblAlertDangerTextAsExpected(){
-         String alertMessage = this.lblAlertDanger.getText();
-        return alertMessage;
-    }
-
     public boolean isLblAlertSuccesDisplayed(){
-        return this.lblAlertSucces.isDisplayed();
-    }
-
-    public boolean isLblAlertDangerDisplayed(){
-        return this.lblAlertDanger.isDisplayed();
+        String succesMessage = "Your message has been successfully sent to our team.";
+        return lblAlertSucces.getText().equals(succesMessage);
     }
 }

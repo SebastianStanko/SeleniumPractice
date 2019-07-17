@@ -102,10 +102,10 @@ public class CreateAccountPage {
         return this;
     }
 
-//    public CreateAccountPage isAddressFirstNameAutofilledByCustomerFirstName() {
-//        if (tfAddressFirstName.getText().equals(tfFirstName.getText()))
-//            return this;
-//        else
-//            ???
-//    }
+    public CreateAccountPage isAddressFirstNameAutofilledByCustomerFirstName() {
+        if (tfAddressFirstName.getAttribute("value").isEmpty())
+            System.out.println("Input jest pusty");
+
+        return this;
+    }
 }

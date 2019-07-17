@@ -18,7 +18,7 @@ public class CreateAccountPageTest extends BaseTest{
                 .inputTextInToTfCreateAccoutEmail("example@domain.com")
                 .clickBtnCreateAnAccount()
                 .checkRadioBtnGender1()
-                .inputTextInToTfFirstName("FirstName")
+//                .inputTextInToTfFirstName("FirstName")
                 .inputTextInToTfLastName("LastName")
                 .inputTextInToTfEmail("example@domain.com")
                 .inputTextInToTfPassword("password")
@@ -27,7 +27,8 @@ public class CreateAccountPageTest extends BaseTest{
                 .selectYearOfBirthByIndex(1)
                 .checkCbSignUpForNewsletter()
                 .checkCbSpecialOffers()
-                .isAddressFirstNameAutofilledByCustomerFirstName();
+                .isAddressFirstNameAutofilledByCustomerFirstName()
+                .inputTextInToTfFirstName("Beniz");
         //when
 
         //then
