@@ -1,5 +1,6 @@
 package com.testujpl.seleniumstart.pages;
 
+import com.testujpl.seleniumstart.driver.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,19 +9,22 @@ import org.openqa.selenium.support.PageFactory;
 public class ProductPage {
 
     @FindBy(css = "button.exclusive")
-    public WebElement btnAddToCart;
+    private WebElement btnAddToCart;
 
-    @FindBy(css = "a.btn.btn-default.button.button-medium")
-    public WebElement btnProceedToCheckOut;
+    @FindBy(css = ".btn.btn-default.button.button-medium")
+    private WebElement btnProceedToCheckOut;
 
-    public ProductPage(WebDriver webDriver){
-        PageFactory.initElements(webDriver, this);
+    public ProductPage(){
+        PageFactory.initElements(Driver.getInstance(), this);
     }
 
-    public void clickBtnAddToCart(){
-        this.btnAddToCart.click();
+    public ProductPage clickBtnAddToCart(){
+        btnAddToCart.click();
+        return this;
     }
-    public void clickBtnProceedToCheckOut(){
-        this.btnProceedToCheckOut.click();
+
+    public OrderPage clickBtnProceedToCheckOut(){
+        btnProceedToCheckOut.click();
+        return new OrderPage();
     }
 }

@@ -32,9 +32,9 @@ public class HomePage {
         return new LoginPage();
     }
 
-    public void clickOnBtnDresses() {
-        this.btnDresses.click();
+    public DressesPage clickOnBtnDresses(){
+        btnDresses.click();
+        return new DressesPage();
     }
-
 }
 

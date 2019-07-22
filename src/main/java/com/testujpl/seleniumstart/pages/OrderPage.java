@@ -1,5 +1,6 @@
 package com.testujpl.seleniumstart.pages;
 
+import com.testujpl.seleniumstart.driver.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,11 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class OrderPage {
 
-    @FindBy(css = "td#total_product")
+    @FindBy(css = "#total_product")
     private WebElement txTotalPrice;
 
-    public OrderPage (WebDriver webDriver){
-        PageFactory.initElements(webDriver, this);
+    public OrderPage (){
+        PageFactory.initElements(Driver.getInstance(), this);
     }
 
     public String getTotalProductPrice(){

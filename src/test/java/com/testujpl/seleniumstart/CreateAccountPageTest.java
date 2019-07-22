@@ -8,17 +8,14 @@ import static org.junit.Assert.assertEquals;
 
 public class CreateAccountPageTest extends BaseTest{
 
-    private HomePage homePage;
-
     @Test
     public void asUserIWantToCreateAccount(){
         //given
-        homePage = new HomePage();
-        CreateAccountPage createAccountPage = homePage.clickOnBtnSignIn()
+        CreateAccountPage createAccountPage =  new HomePage().clickOnBtnSignIn()
                 .inputTextInToTfCreateAccoutEmail("example@domain.com")
                 .clickBtnCreateAnAccount()
                 .checkRadioBtnGender1()
-//                .inputTextInToTfFirstName("FirstName")
+                .inputTextInToTfFirstName("FirstName")
                 .inputTextInToTfLastName("LastName")
                 .inputTextInToTfEmail("example@domain.com")
                 .inputTextInToTfPassword("password")
@@ -27,8 +24,8 @@ public class CreateAccountPageTest extends BaseTest{
                 .selectYearOfBirthByIndex(1)
                 .checkCbSignUpForNewsletter()
                 .checkCbSpecialOffers()
-                .isAddressFirstNameAutofilledByCustomerFirstName()
-                .inputTextInToTfFirstName("Beniz");
+                .isAddressFirstNameAutofilledByCustomerFirstName();
+                //TODO
         //when
 
         //then
