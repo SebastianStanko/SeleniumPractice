@@ -1,7 +1,7 @@
 package com.testujpl.seleniumstart.pages;
 
 import com.testujpl.seleniumstart.driver.Driver;
-import org.openqa.selenium.WebDriver;
+import com.testujpl.seleniumstart.pages.order.OrderSummaryPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -23,8 +23,8 @@ public class ProductPage {
         return this;
     }
 
-    public OrderPage clickBtnProceedToCheckOut(){
+    public OrderSummaryPage clickBtnProceedToCheckOut(){
         btnProceedToCheckOut.click();
-        return new OrderPage();
+        return new OrderSummaryPage();
     }
 }

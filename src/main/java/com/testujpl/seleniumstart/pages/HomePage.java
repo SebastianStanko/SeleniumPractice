@@ -2,7 +2,6 @@ package com.testujpl.seleniumstart.pages;
 
 import com.testujpl.seleniumstart.driver.Driver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -27,9 +26,9 @@ public class HomePage {
         return new ContactUsPage();
     }
 
-    public LoginPage clickOnBtnSignIn(){
+    public AuthenticationPage clickOnBtnSignIn(){
         btnSignIn.click();
-        return new LoginPage();
+        return new AuthenticationPage();
     }
 
     public DressesPage clickOnBtnDresses(){
