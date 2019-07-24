@@ -1,35 +1,23 @@
 package com.testujpl.seleniumstart;
 
-import com.testujpl.seleniumstart.pages.CreateAccountPage;
+import com.testujpl.seleniumstart.core.DataProvider;
 import com.testujpl.seleniumstart.pages.HomePage;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CreateAccountPageTest extends BaseTest{
 
     @Test
     public void asUserIWantToCreateAccount(){
         //given
-        CreateAccountPage createAccountPage =  new HomePage().clickOnBtnSignIn()
-                .inputTextInToTfCreateAccoutEmail("example@domain.com")
-                .clickBtnCreateAnAccount()
-                .checkRadioBtnGender1()
-                .inputTextInToTfFirstName("FirstName")
-                .inputTextInToTfLastName("LastName")
-                .inputTextInToTfEmail("example@domain.com")
-                .inputTextInToTfPassword("password")
-                .selectDayOfBirthByIndex(1)
-                .selectMonthOfBirthByIndex(1)
-                .selectYearOfBirthByIndex(1)
-                .checkCbSignUpForNewsletter()
-                .checkCbSpecialOffers()
-                .isAddressFirstNameAutofilledByCustomerFirstName();
-                //TODO
-        //when
+        boolean actual = new HomePage().clickOnBtnSignIn()
+                .startCreatingNewAccout()
+                //when
+                .fillAndSubmitCreateAccountForm()
+                //then
+                .isUserLogged(DataProvider.getUserFirstName(), DataProvider.getUserLastName());
 
-        //then
-        assertEquals(1,1);
-
+        assertTrue(actual);
     }
 }

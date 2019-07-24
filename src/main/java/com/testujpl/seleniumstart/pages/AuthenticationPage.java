@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
+
 public class AuthenticationPage {
 
     @FindBy(css = "#email_create")
@@ -26,8 +28,15 @@ public class AuthenticationPage {
         PageFactory.initElements(Driver.getInstance(), this);
     }
 
-    public AuthenticationPage inputTextInToTfCreateAccoutEmail(String emailToEnter){
-        tfCreateAccountEmail.sendKeys(emailToEnter);
+    public CreateAccountPage startCreatingNewAccout(){
+        return inputTextInToTfCreateAccountEmail()
+                .clickBtnCreateAnAccount();
+    }
+
+    public AuthenticationPage inputTextInToTfCreateAccountEmail(){
+        Random random = new Random();
+        String emailToInput = "example" + random.nextInt(100000000) + "@domain.com";
+        tfCreateAccountEmail.sendKeys(emailToInput);
         return this;
     }
 
@@ -50,5 +59,4 @@ public class AuthenticationPage {
         btnSubmitLogin.click();
         return new HomePage();
     }
-
 }

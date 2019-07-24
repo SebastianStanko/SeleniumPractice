@@ -1,6 +1,6 @@
 package com.testujpl.seleniumstart;
 
-import com.testujpl.seleniumstart.core.Properties;
+import com.testujpl.seleniumstart.core.DataProvider;
 import com.testujpl.seleniumstart.pages.HomePage;
 import org.junit.Test;
 
@@ -17,8 +17,8 @@ public class OrderPageTest extends  BaseTest {
                 .clickBtnProceedToCheckOut()
                 .checkTotalProductPrice()
                 .clickBtnProceedToCheckout()
-                .inputTextInToTfEmailToLogin(Properties.getUserEmail())
-                .inputTextInToTfPasswordToLogin(Properties.getUserPassword())
+                .inputTextInToTfEmailToLogin(DataProvider.getUserEmail())
+                .inputTextInToTfPasswordToLogin(DataProvider.getUserPassword())
                 .clickOnBtnSubmitLogin()
                 .inputTextInToTaAdditionalComment("Example comment")
                 .clickBtnProccedToCheckout()

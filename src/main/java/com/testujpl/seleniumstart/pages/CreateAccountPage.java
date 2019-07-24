@@ -1,5 +1,6 @@
 package com.testujpl.seleniumstart.pages;
 
+import com.testujpl.seleniumstart.core.DataProvider;
 import com.testujpl.seleniumstart.driver.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,44 +9,81 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CreateAccountPage {
 
-    @FindBy(id = "id_gender1")
+    @FindBy(css = "#id_gender1")
     private WebElement radioBtnGender1;
 
-    @FindBy(id = "customer_firstname")
+    @FindBy(css = "#customer_firstname")
     private WebElement tfFirstName;
 
-    @FindBy(id = "customer_lastname")
+    @FindBy(css = "#customer_lastname")
     private WebElement tfLastName;
 
-    @FindBy(id = "email")
+    @FindBy(css = "#email")
     private WebElement tfEmail;
 
     @FindBy(css = "input[name='passwd']")
     private WebElement tfPassword;
 
-    @FindBy(id = "days")
+    @FindBy(css = "#days")
     private WebElement ddDays;
 
-    @FindBy(id = "months")
+    @FindBy(css = "#months")
     private WebElement ddMonths;
 
-    @FindBy(id = "years")
+    @FindBy(css = "#years")
     private WebElement ddYears;
 
-    @FindBy(id = "newsletter")
+    @FindBy(css = "#newsletter")
     private WebElement cbNewsletter;
 
-    @FindBy(id = "optin")
+    @FindBy(css = "#optin")
     private WebElement cbSpecialOffers;
 
-    @FindBy(id = "firstname")
+    @FindBy(css = "#firstname")
     private WebElement tfAddressFirstName;
 
-    @FindBy(id = "lastname")
+    @FindBy(css = "#lastname")
     private WebElement tfAddressLastName;
+
+    @FindBy(css = "#address1")
+    private WebElement tfAddressAddress;
+
+    @FindBy(css = "#city")
+    private WebElement tfCityAddress;
+
+    @FindBy(css = "#id_state")
+    private WebElement dpStateAddress;
+
+    @FindBy(css = "#postcode")
+    private WebElement tfPostalCodeAddress;
+
+    @FindBy(css = "#phone_mobile")
+    private WebElement tfMobilePhoneAddress;
+
+    @FindBy(css = "#submitAccount")
+    private WebElement btnRegister;
 
     public CreateAccountPage() {
         PageFactory.initElements(Driver.getInstance(), this);
+    }
+
+    public MyAccountPage fillAndSubmitCreateAccountForm(){
+       return checkRadioBtnGender1()
+        .inputTextInToTfFirstName(DataProvider.getUserFirstName())
+       . inputTextInToTfLastName(DataProvider.getUserLastName())
+       . inputTextInToTfPassword(DataProvider.getUserPassword())
+       . selectDayOfBirthByIndex(1)
+       . selectMonthOfBirthByIndex(1)
+        .selectYearOfBirthByIndex(1)
+        .checkCbSignUpForNewsletter()
+       . checkCbSpecialOffers()
+       . isAddressFirstNameAutofilledByCustomerFirstName()
+       . inputTextInToTfAddressAddress(DataProvider.getUserAddress())
+       . inputTextInToTfCityAddress(DataProvider.getUserCity())
+       . chooseStateByIndex(1)
+       . inputTextInToTfPostalCode(DataProvider.getUserPostalCode())
+       . inputTextInToTfMobilePhoneAddress(DataProvider.getUserMobilePhoneNumber())
+       . clickOnBtnRegister();
     }
 
     public CreateAccountPage checkRadioBtnGender1(){
@@ -63,31 +101,25 @@ public class CreateAccountPage {
         return this;
     }
 
-    public CreateAccountPage inputTextInToTfEmail(String emailToInput){
-        tfEmail.clear();
-        tfEmail.sendKeys(emailToInput);
-        return this;
-    }
-
     public CreateAccountPage inputTextInToTfPassword(String passwordToInput){
         tfPassword.sendKeys(passwordToInput);
         return this;
     }
 
     public CreateAccountPage selectDayOfBirthByIndex(int dayOfBirth){
-        Select selectDay = new Select(this.ddDays);
+        Select selectDay = new Select(ddDays);
         selectDay.selectByIndex(dayOfBirth);
         return this;
     }
 
     public CreateAccountPage selectMonthOfBirthByIndex(int monthOfBirth){
-        Select selectMonth = new Select(this.ddMonths);
+        Select selectMonth = new Select(ddMonths);
         selectMonth.selectByIndex(monthOfBirth);
         return this;
     }
 
     public CreateAccountPage selectYearOfBirthByIndex(int yearOfBirth){
-        Select selectYear = new Select(this.ddYears);
+        Select selectYear = new Select(ddYears);
         selectYear.selectByIndex(yearOfBirth);
         return this;
     }
@@ -103,9 +135,40 @@ public class CreateAccountPage {
     }
 
     public CreateAccountPage isAddressFirstNameAutofilledByCustomerFirstName() {
-        if (tfAddressFirstName.getAttribute("value").isEmpty())
-            System.out.println("Input jest pusty");
-
+        if (!tfAddressFirstName.getAttribute("value").equals(tfFirstName.getAttribute("value"))||
+                !tfAddressLastName.getAttribute("value").equals(tfLastName.getAttribute("value")))
+        {System.out.println("Autofilled fields don't match");}
         return this;
+    }
+
+    public CreateAccountPage inputTextInToTfAddressAddress(String addressToInput){
+        tfAddressAddress.sendKeys(addressToInput);
+        return this;
+    }
+
+    public CreateAccountPage inputTextInToTfCityAddress(String cityToInput){
+        tfCityAddress.sendKeys(cityToInput);
+        return this;
+    }
+
+    public CreateAccountPage chooseStateByIndex(int indexToChoose){
+        Select selectState = new Select(this.dpStateAddress);
+        selectState.selectByIndex(indexToChoose);
+        return this;
+    }
+
+    public CreateAccountPage inputTextInToTfPostalCode(String postalCodeToInput){
+        tfPostalCodeAddress.sendKeys(postalCodeToInput);
+        return this;
+    }
+
+    public CreateAccountPage inputTextInToTfMobilePhoneAddress(String numberToInput){
+        tfMobilePhoneAddress.sendKeys(numberToInput);
+        return this;
+    }
+
+    public MyAccountPage clickOnBtnRegister(){
+        btnRegister.click();
+        return new MyAccountPage();
     }
 }

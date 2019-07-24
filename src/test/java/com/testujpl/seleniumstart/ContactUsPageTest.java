@@ -1,6 +1,5 @@
 package com.testujpl.seleniumstart;
 
-import com.testujpl.seleniumstart.pages.ContactUsPage;
 import com.testujpl.seleniumstart.pages.HomePage;
 import org.junit.Test;
 
@@ -13,12 +12,8 @@ public class ContactUsPageTest extends BaseTest {
     public void asUserIWantToSendContactUsMessage() {
         //given
         Boolean actual = new HomePage().clickOnBtnContactUs()
-                .selectSubjectById(1)
-                .inputTextInToTfEmail("email@example.com")
-                .inputTextInTfOrderReference("exampleRoderReference")
-                .inputTextInTfMessage("Example Message")
                 //when
-                .clickOnBtnSubmitMessage()
+                .fillAndSubmitContactUsForm()
                 //then
                 .isLblAlertSuccesDisplayed();
 

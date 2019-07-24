@@ -1,5 +1,6 @@
 package com.testujpl.seleniumstart.pages;
 
+import com.testujpl.seleniumstart.core.DataProvider;
 import com.testujpl.seleniumstart.driver.Driver;
 import com.testujpl.seleniumstart.driver.Waits;
 import org.openqa.selenium.WebDriver;
@@ -33,6 +34,14 @@ public class ContactUsPage {
     public ContactUsPage(){
         Waits.implicitlyWait(2);
         PageFactory.initElements(Driver.getInstance(),this);
+    }
+
+    public ContactUsPage fillAndSubmitContactUsForm(){
+        return selectSubjectById(1)
+                .inputTextInToTfEmail(DataProvider.getUserEmail())
+                .inputTextInTfOrderReference("exampleRoderReference")
+                .inputTextInTfMessage("Example Message")
+                .clickOnBtnSubmitMessage();
     }
 
     public ContactUsPage inputTextInToTfEmail(String textToInput){
